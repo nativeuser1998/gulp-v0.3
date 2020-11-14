@@ -38,7 +38,7 @@ let { src, dest } = require('gulp'),
    group_media = require("gulp-group-css-media-queries"),
    clean_css = require("gulp-clean-css"),
    rename = require("gulp-rename"),
-   uglify = require('gulp-uglify-es').default,
+   terser = require('gulp-terser'),
    imagemin = require('gulp-imagemin'),
    webp = require('gulp-webp'),
    webphtml = require('gulp-webp-html'),
@@ -95,7 +95,7 @@ function css() {
       .pipe(browsersync.stream())
 
 }
-//! LINT-----------------------------------------------------------------
+//! LINT----
 function lintCss() {
    return src(path.src.css)
       .pipe(gulpStylelint({
@@ -113,7 +113,10 @@ function js() {
       .pipe(fileinclude())
       .pipe(dest(path.build.js))
       .pipe(
-         uglify()
+        terser({
+          keep_fnames: true,
+          mangle: false
+        })
       )
       .pipe(
          rename({
@@ -233,7 +236,6 @@ exports.html = html;
 exports.build = build;
 exports.watch = watch;
 exports.default = watch;
-
 
 
 
