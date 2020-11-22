@@ -34,7 +34,7 @@ let { src, dest } = require('gulp'),
    fileinclude = require("gulp-file-include"),
    del = require("del"),
    scss = require("gulp-sass"),
-   autoprefixer = require("gulp-autoprefixer"),
+  //  autoprefixer = require("gulp-autoprefixer"),
    group_media = require("gulp-group-css-media-queries"),
    clean_css = require("gulp-clean-css"),
    rename = require("gulp-rename"),
@@ -77,12 +77,12 @@ function css() {
       .pipe(
          group_media()
       )
-      .pipe(
-         autoprefixer({
-            overrideBrowserslist: ["last 5 versions"],
-            cascade: true
-         })
-      )
+      // .pipe(
+      //    autoprefixer({
+      //       overrideBrowserslist: ["last 5 versions"],
+      //       cascade: true
+      //    })
+      // )
       .pipe(webpcss())
       .pipe(dest(path.build.css))
       .pipe(clean_css())
@@ -95,7 +95,7 @@ function css() {
       .pipe(browsersync.stream())
 
 }
-//! LINT----
+
 function lintCss() {
    return src(path.src.css)
       .pipe(gulpStylelint({

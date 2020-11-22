@@ -1,7 +1,7 @@
 
 .vscode
 .github
-gulpV-0.3
+gulpGit-v
 node_modules
 
 package-lock.json
